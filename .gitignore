@@ -1,0 +1,12 @@
+# Assemblies
+[Bb]in/
+
+# Output files
+[Oo]bj/
+
+# Visual Studio Code files
+.vscode/
+launchSettings.json
+
+# OS files
+.DS_Store
