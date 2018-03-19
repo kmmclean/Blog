@@ -20,9 +20,9 @@ namespace Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BlogContext>(options =>
+            services.AddEntityFrameworkNpgsql().AddDbContext<BlogContext>(options =>
             {
-                options.UseInMemoryDatabase(Configuration["Data:DatabaseName"]);
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
 
             services.AddMvc();
