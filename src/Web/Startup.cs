@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Blog.Web.Interfaces;
+using Blog.Web.Services;
+using Blog.Core.Interfaces;
+using Blog.Core.Entities;
 
 namespace Web
 {
@@ -26,6 +30,9 @@ namespace Web
             });
 
             services.AddMvc();
+
+            services.AddScoped<IRepository<Post>, EntityRepository<Post>>();
+            services.AddScoped<IPostViewModelService, PostViewModelService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
