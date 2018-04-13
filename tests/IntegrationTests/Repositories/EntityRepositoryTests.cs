@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Blog.Core.Entities;
 using Blog.Infrastructure.Data;
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
@@ -30,13 +31,14 @@ namespace Blog.IntegrationTests.Repositories
                 Id = 1,
                 Title = "Slaughterhouse-Five",
                 Content = "All this happened, more or less.",
-                Author = "Kurt Vonnegut"
+                Author = "Kurt Vonnegut",
+                CreatedOn = new DateTime(1969, 1, 19, 3, 0, 0)
             };
             _blogContext.Add<Post>(expected);
             _blogContext.SaveChanges();
 
             var actual = await _entityRepository.GetByIdAsync(1);
-            Assert.Equal(expected, actual);
+            actual.Should().BeEquivalentTo(expected);
         }
 
         [Fact]
@@ -50,21 +52,23 @@ namespace Blog.IntegrationTests.Repositories
                     Title = "Pride and Prejudice",
                     Content = @"It is a truth universally acknowledged, that a single man in possession of a good fortune,
                         must be in want of a wife.",
-                    Author = "Jane Austen"
+                    Author = "Jane Austen",
+                    CreatedOn = new DateTime(1813, 1, 28, 2, 0, 0)
                 },
                 new Post
                 {
                     Id = 2,
                     Title = "Moby-Dick",
                     Content = "Call me Ishmael.",
-                    Author = "Herman Melville"
+                    Author = "Herman Melville",
+                    CreatedOn = new DateTime(1854, 11, 14, 16, 30, 0)
                 }
             };
             _blogContext.AddRange(expected);
             _blogContext.SaveChanges();
 
             var actual = await _entityRepository.GetAllAsync();
-            Assert.Equal(expected, actual);
+            actual.Should().BeEquivalentTo(expected);
         }
     }
 }
