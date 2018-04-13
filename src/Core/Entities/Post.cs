@@ -1,3 +1,5 @@
+using System;
+
 namespace Blog.Core.Entities
 {
     public class Post : BaseEntity
@@ -5,5 +7,6 @@ namespace Blog.Core.Entities
         public string Title { get; set; }
         public string Content { get; set; }
         public string Author { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }
