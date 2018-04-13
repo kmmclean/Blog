@@ -10,7 +10,7 @@ namespace Blog.Infrastructure.Data
     {
         private readonly DbContext _context;
 
-        public EntityRepository(DbContext context)
+        public EntityRepository(BlogContext context)
         {
             _context = context;
         }
