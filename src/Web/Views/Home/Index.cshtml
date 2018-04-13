@@ -1,1 +1,11 @@
+@model IEnumerable<PostViewModel>
+
 <h1>Blog Index</h1>
+
+@foreach (var post in Model)
+{
+    <article>
+        <h2>@post.Title</h2>
+        @post.Content
+    </article>
+}
